@@ -46,21 +46,15 @@ getName класса Item) с аргументом метода String key. Эл
     }
 
     /*Реализуйте метод Tracker.replace, используя метод indexOf.
-      Причем вызов indexOf должен быть один.*/
+      Причем вызов indexOf должен быть один.
+    1. Найти индекс ячейки по id.
+    2. Проставить id с item. При замене нужно сохранять старый id.
+    3. Записать в ячейку с найденным индексом объект item. Это входящий параметр.
+    4. Вернуть true, если замена произведена или false, если index по id не найден.*/
     public boolean replace(int id, Item item) {
-    /*Первоначально нужно найти ячейку с id приходящем в параметре.
-      Мы уже реализовали методы для поиска по id,
-      но этот метод возвращает объект Item, а не index.
-      Давайте создадим новый метод, который будет возвращать index по id.*/
-        //indexOf(id);
-        boolean bul = false;
-        if (findById(id) != null) {
-            items[indexOf(id)] = item;
-            //items[indexOf(id)].setId(id);
-            bul = true;
-        }
-
-        return bul;
+        item.setId(id);
+        items[indexOf(id)] = item;
+        return  true;
     }
 
     private int indexOf(int id) {
