@@ -53,8 +53,12 @@ getName класса Item) с аргументом метода String key. Эл
     4. Вернуть true, если замена произведена или false, если index по id не найден.*/
     public boolean replace(int id, Item item) {
         item.setId(id);
-        items[indexOf(id)] = item;
-        return  true;
+        int index = indexOf(id);
+        boolean rsl = index != -1;
+        if (rsl) {
+            items[index] = item;
+        }
+        return  rsl;
     }
 
     private int indexOf(int id) {
@@ -70,13 +74,17 @@ getName класса Item) с аргументом метода String key. Эл
 
     public boolean delete(int id) {
         int index = indexOf(id);
+        boolean rsl = index != -1;
         int startPos = index + 1; // ячейка, в которую мы начинаем вставлять скопированные элементы.
         int distPos = index; // начиная с какого элемента вставлять скопированные ячейки
         int length = size - index; //сколько элементов взять начиная от startPos.
-        System.arraycopy(items, startPos, items, distPos, length);
-        items[size - 1] = null;
-        size--;
-        return true;
+
+        if (rsl) {
+            System.arraycopy(items, startPos, items, distPos, length);
+            items[size - 1] = null;
+            size--;
+        }
+        return rsl;
     }
 
 }
