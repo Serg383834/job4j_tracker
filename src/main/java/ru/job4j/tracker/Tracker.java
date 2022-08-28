@@ -68,4 +68,15 @@ getName класса Item) с аргументом метода String key. Эл
         return rsl;
     }
 
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        int startPos = index + 1; // ячейка, в которую мы начинаем вставлять скопированные элементы.
+        int distPos = index; // начиная с какого элемента вставлять скопированные ячейки
+        int length = size - index; //сколько элементов взять начиная от startPos.
+        System.arraycopy(items, startPos, items, distPos, length);
+        items[size - 1] = null;
+        size--;
+        return true;
+    }
+
 }
